@@ -1,3 +1,4 @@
+import { createServer } from 'miragejs';
 export let sales;
 export let subscriptions;
 
@@ -23,4 +24,9 @@ if (process.env.NODE_ENV === "development") {
     variance: 5,
     decimalDigits: 0
   });
+
+  const server = createServer();
+  server.namespace = process.env.REACT_APP_BASE_URL;
+  server.get("/sales", sales);
+  server.get("/subscriptions", subscriptions);
 }
