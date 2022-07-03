@@ -1,4 +1,5 @@
 import { createServer } from 'miragejs';
+import { Response } from 'miragejs';
 export let sales;
 export let subscriptions;
 
@@ -27,6 +28,7 @@ if (process.env.NODE_ENV === "development") {
 
   const server = createServer();
   server.namespace = process.env.REACT_APP_BASE_URL;
+  server.get("/error", new Response(500, { errors: ['Internal server error.']}));
   server.get("/sales", sales);
   server.get("/subscriptions", subscriptions);
 }
