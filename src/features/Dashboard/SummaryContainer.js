@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import DashboardContext from "../../common/contexts/DashboardContext";
 
-const SummaryContainer = ({ salesTotal, subscriptionsTotal }) => {
+const SummaryContainer = () => {
+  const {salesTotal, subscriptionsTotal} = useContext(DashboardContext);
   return (
     <div className="summary flex flex-row">
       <div className="card bg-indigo">
@@ -17,16 +19,18 @@ const SummaryContainer = ({ salesTotal, subscriptionsTotal }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    salesTotal: state.dataset.salesTotal,
-    subscriptionsTotal: state.dataset.subscriptionsTotal
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     salesTotal: state.dataset.salesTotal,
+//     subscriptionsTotal: state.dataset.subscriptionsTotal
+//   };
+// };
 
-SummaryContainer.propTypes = {
-  salesTotal: PropTypes.number.isRequired,
-  subscriptionsTotal: PropTypes.number.isRequired
-};
+// SummaryContainer.propTypes = {
+//   salesTotal: PropTypes.number.isRequired,
+//   subscriptionsTotal: PropTypes.number.isRequired
+// };
 
-export default connect(mapStateToProps)(SummaryContainer);
+export default SummaryContainer;
+
+// export default connect(mapStateToProps)(SummaryContainer);

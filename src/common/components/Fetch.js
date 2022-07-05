@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import useFetch from '../hooks/useFetch';
 import Loading from './Loading';
 
+// todo: consider using internal function for building UI, loading, error, then component
 const Fetch = ({component, fetchUrl, }) => {
   const {data, isLoading, error } = useFetch(fetchUrl);
 

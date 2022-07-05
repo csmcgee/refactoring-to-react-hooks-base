@@ -1,31 +1,32 @@
 import { useReducer, useEffect } from "react";
 
 const initialState = {
-  data: null,
-  isLoading: true,
+  data: undefined,
+  loading: true,
   error: false
 };
 
+// todo: add finish to use in finally clause
 export function reducer(state, action) {
   switch(action.type) {
     case "FETCH_REQUEST":
       return {
         ...state,
-        isLoading: true,
+        loading: true,
         error: false,
-        data: null,
+        data: undefined,
       };
     case "FETCH_SUCCESS":
       return {
         ...state,
-        isLoading: false,
+        loading: false,
         error: false,
         data: action.payload,
       };
     case "FETCH_ERROR":
       return {
         ...state,
-        isLoading: false,
+        loading: false,
         error: action.payload,
       };
     default:
@@ -34,6 +35,7 @@ export function reducer(state, action) {
 }
 
 
+// todo: add handling for empty url (don't do anyting in useEffect)
 export default function useFetch(url) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -57,6 +59,10 @@ export default function useFetch(url) {
           payload: e,
         });
       }
+    }
+
+    if (!url) {
+      return;
     }
 
     fetchData();
