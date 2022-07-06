@@ -1,11 +1,11 @@
 import React from "react";
 import DashboardShell from "./features/Dashboard/DashboardShell";
-import Container from "./features/Dashboard/Container";
-
+import { GlobalContextProvider } from "./common/contexts/GlobalContext";
 
 const App = () => {
-  return <Container/>;
-  // return <DashboardShell />;
+  return <GlobalContextProvider>
+    <DashboardShell />;
+  </GlobalContextProvider>
 };
 
 export default App;

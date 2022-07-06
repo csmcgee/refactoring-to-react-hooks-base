@@ -18,15 +18,17 @@ export function reducer(state, action) {
     case "FETCH_SUCCESS":
       return {
         ...state,
-        isLoading: false,
-        error: false,
         data: action.payload,
       };
     case "FETCH_ERROR":
       return {
         ...state,
-        isLoading: false,
         error: action.payload,
+      };
+    case "FETCH_COMPLETE":
+      return {
+        ...state,
+        isLoading: false,
       };
     default:
       return state;
@@ -56,7 +58,13 @@ export default function useFetch(url) {
           type: "FETCH_ERROR",
           payload: e,
         });
+      } finally {
+        dispatch({ type: "FETCH_COMPLETE" });
       }
+    }
+
+    if (!url) {
+      return;
     }
 
     fetchData();

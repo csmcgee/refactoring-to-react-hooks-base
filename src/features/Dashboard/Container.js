@@ -5,8 +5,8 @@ import Select from '../../common/components/Select';
 const Container = () => {
   const API_BASE_URL = process.env.REACT_APP_BASE_URL;
   const options = [
-    { name: "Sales", value: `${API_BASE_URL}/sales` },
-    { name: "Subscriptions", value: `${API_BASE_URL}/subscriptions` },
+    { label: "Sales", value: `${API_BASE_URL}/sales` },
+    { label: "Subscriptions", value: `${API_BASE_URL}/subscriptions` },
   ];
   const [selection, setSelection] = useState(null);
 
@@ -24,7 +24,7 @@ const Container = () => {
       onChange={(e) => {setSelection(e.target.value)}}
       options={options}
     />
-    {selection && <Fetch fetchUrl={selection} component={chartComponent}/>}
+    {selection && <Fetch fetchUrl={selection}>{data => chartComponent(data)}</Fetch>}
   </>
 }
 

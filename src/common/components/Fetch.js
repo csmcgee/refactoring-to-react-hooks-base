@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import useFetch from '../hooks/useFetch';
 import Loading from './Loading';
 
-const Fetch = ({component, fetchUrl, }) => {
+const Fetch = ({ children, fetchUrl }) => {
   const {data, isLoading, error } = useFetch(fetchUrl);
 
   if (error) {
@@ -14,12 +14,12 @@ const Fetch = ({component, fetchUrl, }) => {
     return <Loading/>
   }
 
-  return component(data);
+  return <div>{children(data)}</div>;
 
 };
 
 Fetch.propTypes = {
-  component: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
   fetchUrl: PropTypes.string.isRequired,
 };
 
