@@ -17,7 +17,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^10.3.0",
     "miragejs": "^0.1.40",
     "prop-types": "^15.7.2",
     "time-series-data-generator": "^0.1.5"

@@ -30,6 +30,8 @@ export function reducer(state, action) {
         ...state,
         isLoading: false,
       };
+    case "FETCH_RESET":
+      return initialState;
     default:
       return state;
   }
@@ -64,7 +66,7 @@ export default function useFetch(url) {
     }
 
     if (!url) {
-      return;
+      return dispatch({ type: "FETCH_RESET"});
     }
 
     fetchData();

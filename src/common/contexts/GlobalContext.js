@@ -1,6 +1,5 @@
-import React, { createContext } from "react";
-import { sales } from "../../mocks";
-
+import React, { createContext, useState } from "react";
+import useFetch from "../hooks/useFetch";
 const GlobalContext = createContext();
 
 export default GlobalContext;
@@ -8,13 +7,20 @@ export default GlobalContext;
 const initialState = {
   loading: true,
   error: "",
-  data: sales,
-  salesTotal: 100,
-  subscriptionsTotal: 100,
+  data: [],
 };
 
 export function GlobalContextProvider({children}) {
-  return <GlobalContext.Provider value={{...initialState}}>
+  const [url, setUrl] = useState();
+  const state = useFetch(url);
+
+  return <GlobalContext.Provider
+    value={{
+      url,
+      setUrl,
+      ...state
+    }}
+  >
     {children}
   </GlobalContext.Provider>
 }

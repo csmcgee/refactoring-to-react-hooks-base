@@ -5,8 +5,8 @@ import GlobalContext from "../../common/contexts/GlobalContext";
 
 const ChartContainer = ({ selectedLabel }) => {
   const { data: dataset } = useContext(GlobalContext);
-  const chartLabels = dataset.map(dataPoint => dataPoint.timestamp);
-  const chartValues = dataset.map(dataPoint => dataPoint.amount);
+  const chartLabels = dataset ? dataset.map(dataPoint => dataPoint.timestamp) : [];
+  const chartValues = dataset ? dataset.map(dataPoint => dataPoint.amount) : [];
 
   return (
     <div>
@@ -20,7 +20,6 @@ const ChartContainer = ({ selectedLabel }) => {
 };
 
 ChartContainer.propTypes = {
-  dataset: PropTypes.array.isRequired,
   selectedLabel: PropTypes.string.isRequired
 };
 

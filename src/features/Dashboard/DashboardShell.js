@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Aside from "../../common/components/Aside";
 import ChartContainer from "./ChartContainer";
 import Layout from "../../common/components/Layout";
 import Main from "../../common/components/Main";
 import SummaryContainer from "./SummaryContainer";
 import Select from "../../common/components/Select";
+import GlobalContext from "../../common/contexts/GlobalContext";
 
 export default function DashboardShell() {
   const [selectedLabel, setSelectedLabel] = useState("");
@@ -15,15 +16,11 @@ export default function DashboardShell() {
       value: `${process.env.REACT_APP_BASE_URL}/subscriptions/`
     }
   ];
-
-  // @todo
-  // useEffect(() => {
-  //   this.props.fetchDataset(`${process.env.REACT_APP_BASE_URL}/totals/`);
-  // }, []);
+  const { setUrl } = useContext(GlobalContext);
 
   // @todo
   function handleSelectChange(event) {
-    // this.props.fetchDataset(event.target.value);
+    setUrl(event.target.value);
     setSelectedLabel(event.target.selectedOptions[0].label);
   }
 
