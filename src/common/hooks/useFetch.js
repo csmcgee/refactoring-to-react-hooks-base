@@ -37,7 +37,6 @@ export function reducer(state, action) {
   }
 }
 
-
 export default function useFetch(url) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
